@@ -11,22 +11,21 @@ export default function CustomTextInput(props) {
     label,
     keyboardType,
     secureTextInput,
-    icon,
     onChangeText,
-    value 
+    value,
+    error, 
   } = props;
 
   return (
-    <View style={{ position: "relative", width: "100%" }}>
+    <View style={{ position: "relative", width:'auto'}}>
       <TextInput
         label={label}
         style={style.TextInput}
         mode="outlined"
-        theme={{ colors: { primary: Colors.PRIMARY } }}
+        theme={{ colors: { primary: !value && error ? Colors.WARNING_RED : Colors.PRIMARY} }}
         keyboardType={keyboardType !== "" ? keyboardType : "default"}
         secureTextEntry={secureTextInput}
-        left={<TextInput.Icon icon={icon} />}
-        outlineColor="#cfcfcf"
+        outlineColor={!value && error ? Colors.WARNING_RED : Colors.TEXT_BOX_BORDER_COLOR}
         value={value}
         onChangeText={onChangeText}
       ></TextInput>
@@ -36,7 +35,7 @@ export default function CustomTextInput(props) {
 
 const style = StyleSheet.create({
   TextInput: {
-    marginBottom: hp(0.5),
-    height: hp(7),
+    marginBottom:3,
+    height:55,
   },
 });

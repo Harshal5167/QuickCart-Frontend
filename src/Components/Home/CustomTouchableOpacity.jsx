@@ -4,16 +4,12 @@ import {
   widthPercentageToDP as wd,
 } from "react-native-responsive-screen";
 import Colors from "../../Constants/Colors";
-import { Icon } from "react-native-paper";
 
 export default function CustomTouchableOpacity(props) {
   const { text, onClick } = props;
 
   return (
     <View style={{ position: "relative", width: "100%" }}>
-      <Icon>
-        
-      </Icon>
       <TouchableOpacity style={style.Button} onPress={onClick}>
         <Text style={style.text}>{text}</Text>
       </TouchableOpacity>
@@ -23,12 +19,14 @@ export default function CustomTouchableOpacity(props) {
 
 const style = StyleSheet.create({
   Button: {
-    height: 55,
+    height: 50,
     marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: Colors.PRIMARY,
+    backgroundColor: Colors.WHITE,
     borderRadius: 5,
+    borderWidth: 1,
+    borderColor: Colors.TEXT_BOX_BORDER_COLOR,
   },
   text: {
     fontSize: 16,

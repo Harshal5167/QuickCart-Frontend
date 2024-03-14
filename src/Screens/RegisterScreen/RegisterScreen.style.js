@@ -8,33 +8,33 @@ import Colors from "../../Constants/Colors";
 
 export const styles = StyleSheet.create({
   WelcomeMsg: {
-    fontSize: hp(3),
+    fontSize: 24,
     textAlign: "center",
-    marginBottom: hp(1),
+    marginBottom: 5,
     fontWeight: "600",
   },
   SignUpMsg: {
-    fontSize: hp(2),
+    fontSize: 16,
     textAlign: "center",
-    marginBottom: hp(3),
+    marginBottom: 20,
   },
   logo: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: hp(2),
+    marginBottom: 15,
   },
   alreadyHaveAccount: {
     textAlign: "center",
-    fontSize: hp(2),
+    fontSize: 16,
   },
   signIn: {
     fontWeight: "600",
     color: Colors.PRIMARY,
   },
   mainContainer: {
-    padding:hp(4),
-    flex: 5,
-    justifyContent: "center",
-    paddingHorizontal: wd(4),
+    paddingTop:'25%',
+    flex: 1,
+    paddingBottom:'15%',
+    paddingHorizontal: 15,
   },
 });

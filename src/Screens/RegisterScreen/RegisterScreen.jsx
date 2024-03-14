@@ -16,6 +16,20 @@ export default function RegisterScreenComponent({ navigation }) {
   const [Password, setPassword] = React.useState("");
   const [Email, setEmail] = React.useState("");
   const [PhoneNo, setPhoneNo] = React.useState("");
+  const [error, setError] = React.useState(false);
+
+  const onButtonClick = () => {
+    const usernameTrimmed = Username.trim();
+    const passwordTrimmed = Password.trim();
+    const EmailTrimmed = Email.trim();
+    const PhoneNoTrimmed = PhoneNo.trim();
+
+    if(!usernameTrimmed || !passwordTrimmed || !PhoneNoTrimmed || !EmailTrimmed){
+      setError(true)
+    }else{
+      navigation.navigate("CompleteYourProfileScreen")
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -24,7 +38,6 @@ export default function RegisterScreenComponent({ navigation }) {
         contentContainerStyle={{ flexGrow: 1 }}
         scrollEnabled={true}
       >
-        <View style={{ flex: 1 }}>
           <View style={{ ...styles.mainContainer }}>
             <View style={{ ...styles.logo }}>
               <Image source={require("../../../assets/icon.png")} />
@@ -35,31 +48,31 @@ export default function RegisterScreenComponent({ navigation }) {
               label="Username"
               value={Username}
               onChangeText={(text) => setUsername(text)}
-              icon="account"
+              error={error}
             />
             <CustomTextInput
               label="Email"
               value={Email}
               onChangeText={(text) => setEmail(text)}
-              icon="email"
               keyboardType="email-address"
+              error={error}
             />
             <CustomTextInput
               label="Phone No."
               value={PhoneNo}
               onChangeText={(text) => setPhoneNo(text)}
-              icon="cellphone"
               keyboardType="phone-pad"
+              error={error}
             />
             <CustomTextInput
               label="Password"
               value={Password}
               onChangeText={(text) => setPassword(text)}
               secureTextInput={true}
-              icon="lock"
+              error={error}
             />
-            <CustomTouchableOpacity text={"Sign Up"} />
-            <View style={{ marginTop: hp(3) }}>
+            <CustomTouchableOpacity text={"Sign Up"} onClick={onButtonClick}/>
+            <View style={{ marginTop: 15 }}>
               <Text style={{ ...styles.alreadyHaveAccount }}>
                 already have an account?{" "}
                 <Text
@@ -71,8 +84,6 @@ export default function RegisterScreenComponent({ navigation }) {
               </Text>
             </View>
           </View>
-          <View style={{ flex: 1 }}></View>
-        </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
   );

@@ -2,7 +2,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wd,
 } from "react-native-responsive-screen";
-import { View, Text, Image, SafeAreaView } from "react-native";
+import { View, Text, Image } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -14,20 +15,26 @@ import Login from "../../Services/Auth/Login";
 export default function LoginScreenComponent({ navigation }) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState(false);
 
-  const onButtonClick=()=>{
-    const usernameTrimmed=username.trim();
-    const passwordTrimmed=password.trim();
-    Login({usernameTrimmed,passwordTrimmed})
-  }
+  const onButtonClick = () => {
+    const usernameTrimmed = username.trim();
+    const passwordTrimmed = password.trim();
+
+    if (!usernameTrimmed || !passwordTrimmed) {
+      setError(true);
+    } else {
+      navigation.navigate("HomeScreen");
+    }
+  };
 
   return (
-    <KeyboardAwareScrollView
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      scrollEnabled={true}
-    >
-      <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <KeyboardAwareScrollView
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        scrollEnabled={true}
+      >
         <View style={{ ...styles.mainContainer }}>
           <View style={{ ...styles.logo }}>
             <Image source={require("../../../assets/icon.png")} />
@@ -38,17 +45,17 @@ export default function LoginScreenComponent({ navigation }) {
             label="Username"
             value={username}
             onChangeText={(text) => setUsername(text)}
-            icon="account"
+            error={error}
           />
           <CustomTextInput
             label="Password"
             value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextInput={true}
-            icon="lock"
+            error={error}
           />
           <CustomTouchableOpacity text={"Sign In"} onClick={onButtonClick} />
-          <View style={{ marginTop: hp(3) }}>
+          <View style={{ marginTop: 15 }}>
             <Text style={{ ...styles.dontHaveAccount }}>
               Don't have a account?{" "}
               <Text
@@ -60,8 +67,7 @@ export default function LoginScreenComponent({ navigation }) {
             </Text>
           </View>
         </View>
-        <View style={{ flex: 1 }}></View>
-      </SafeAreaView>
-    </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 }
