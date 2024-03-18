@@ -11,9 +11,7 @@ export default function CustomTouchableOpacity(props) {
 
   return (
     <View style={{ position: "relative", width: "100%" }}>
-      <Icon>
-        
-      </Icon>
+      <Icon></Icon>
       <TouchableOpacity style={style.Button} onPress={onClick}>
         <Text style={style.text}>{text}</Text>
       </TouchableOpacity>

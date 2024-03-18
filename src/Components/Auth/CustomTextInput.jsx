@@ -7,25 +7,25 @@ import {
 import Colors from "../../Constants/Colors";
 
 export default function CustomTextInput(props) {
-  const {
-    label,
-    keyboardType,
-    secureTextInput,
-    onChangeText,
-    value,
-    error, 
-  } = props;
+  const { label, keyboardType, secureTextInput, onChangeText, value, error } =
+    props;
 
   return (
-    <View style={{ position: "relative", width:'auto'}}>
+    <View style={{ position: "relative", width: "auto" }}>
       <TextInput
         label={label}
         style={style.TextInput}
         mode="outlined"
-        theme={{ colors: { primary: !value && error ? Colors.WARNING_RED : Colors.PRIMARY} }}
+        theme={{
+          colors: {
+            primary: !value && error ? Colors.WARNING_RED : Colors.PRIMARY,
+          },
+        }}
         keyboardType={keyboardType !== "" ? keyboardType : "default"}
         secureTextEntry={secureTextInput}
-        outlineColor={!value && error ? Colors.WARNING_RED : Colors.TEXT_BOX_BORDER_COLOR}
+        outlineColor={
+          !value && error ? Colors.WARNING_RED : Colors.TEXT_BOX_BORDER_COLOR
+        }
         value={value}
         onChangeText={onChangeText}
       ></TextInput>
@@ -35,7 +35,7 @@ export default function CustomTextInput(props) {
 
 const style = StyleSheet.create({
   TextInput: {
-    marginBottom:3,
-    height:55,
+    marginBottom: 3,
+    height: 55,
   },
 });

@@ -1,16 +1,11 @@
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wd,
-} from "react-native-responsive-screen";
 import { View, Text, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import CustomTextInput from "../../Components/Auth/CustomTextInput";
-import CustomTouchableOpacity from "../../Components/Auth/CustomTouchableOpacity";
+import CustomTextInput from "../../../Components/Auth/CustomTextInput";
+import CustomTouchableOpacity from "../../../Components/Auth/CustomTouchableOpacity";
 import { styles } from "./LoginScreen.style";
-import Login from "../../Services/Auth/Login";
 
 export default function LoginScreenComponent({ navigation }) {
   const [username, setUsername] = React.useState("");
@@ -24,7 +19,7 @@ export default function LoginScreenComponent({ navigation }) {
     if (!usernameTrimmed || !passwordTrimmed) {
       setError(true);
     } else {
-      navigation.navigate("HomeScreen");
+      navigation.navigate("AppHome");
     }
   };
 
@@ -37,7 +32,7 @@ export default function LoginScreenComponent({ navigation }) {
       >
         <View style={{ ...styles.mainContainer }}>
           <View style={{ ...styles.logo }}>
-            <Image source={require("../../../assets/icon.png")} />
+            <Image source={require("../../../../assets/icon.png")} />
           </View>
           <Text style={{ ...styles.WelcomeMsg }}>Welcome to QuickCart</Text>
           <Text style={{ ...styles.SignInMsg }}>Sign in to continue</Text>

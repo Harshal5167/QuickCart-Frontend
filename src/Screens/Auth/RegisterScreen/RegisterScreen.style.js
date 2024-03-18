@@ -4,16 +4,16 @@ import {
   widthPercentageToDP as wd,
 } from "react-native-responsive-screen";
 
-import Colors from "../../Constants/Colors";
+import Colors from "../../../Constants/Colors";
 
 export const styles = StyleSheet.create({
   WelcomeMsg: {
     fontSize: 24,
     textAlign: "center",
     marginBottom: 5,
-    fontWeight: '600',
+    fontWeight: "600",
   },
-  SignInMsg: {
+  SignUpMsg: {
     fontSize: 16,
     textAlign: "center",
     marginBottom: 20,
@@ -23,17 +23,17 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 15,
   },
-  dontHaveAccount: {
+  alreadyHaveAccount: {
     textAlign: "center",
     fontSize: 16,
   },
-  Register: {
+  signIn: {
     fontWeight: "600",
     color: Colors.PRIMARY,
   },
   mainContainer: {
-    flex: 1,
     paddingTop:'25%',
+    flex: 1,
     paddingBottom:'15%',
     paddingHorizontal: 15,
   },

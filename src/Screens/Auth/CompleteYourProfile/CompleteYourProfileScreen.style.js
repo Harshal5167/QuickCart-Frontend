@@ -4,7 +4,7 @@ import {
   widthPercentageToDP as wd,
 } from "react-native-responsive-screen";
 
-import Colors from "../../Constants/Colors";
+import Colors from "../../../Constants/Colors";
 
 export const styles = StyleSheet.create({
   ProfileCompletionMsg: {

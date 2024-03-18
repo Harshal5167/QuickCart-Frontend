@@ -6,9 +6,9 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import countryList from "react-select-country-list";
 
 import { styles } from "./CompleteYourProfileScreen.style";
-import CustomTextInput from "../../Components/Auth/CustomTextInput";
-import CustomTouchableOpacity from "../../Components/Auth/CustomTouchableOpacity";
-import Colors from "../../Constants/Colors";
+import CustomTextInput from "../../../Components/Auth/CustomTextInput";
+import CustomTouchableOpacity from "../../../Components/Auth/CustomTouchableOpacity";
+import Colors from "../../../Constants/Colors";
 
 export default function CompleteYourProfileScreenComponent({ navigation }) {
   const [name, setName] = React.useState("");
@@ -35,8 +35,8 @@ export default function CompleteYourProfileScreenComponent({ navigation }) {
       !cityTrimmed
     ) {
       setError(true);
-    }else{
-      navigation.navigate('HomeScreen')
+    } else {
+      navigation.navigate("HomeScreen");
     }
   };
 
@@ -54,7 +54,7 @@ export default function CompleteYourProfileScreenComponent({ navigation }) {
           <View style={{ ...styles.profileIconBox }}>
             <Image
               style={{ ...styles.profileIcon }}
-              source={require("../../../assets/Custom-Assets/Profile.png")}
+              source={require("../../../../assets/Custom-Assets/Profile.png")}
             />
           </View>
           <Text style={{ ...styles.uploadProfileText }}>
