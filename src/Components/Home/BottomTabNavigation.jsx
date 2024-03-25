@@ -9,7 +9,7 @@ import ExploreScreenComponent from "../../Screens/AppHome/AppHomeScreens/Explore
 import OrdersScreenComponent from "../../Screens/AppHome/AppHomeScreens/OrdersScreen/OrdersScreen";
 
 const BottomTabNavigation = ({ navigation }) => {
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(2);
   const [routes] = React.useState([
     {
       key: "Home",
@@ -33,10 +33,10 @@ const BottomTabNavigation = ({ navigation }) => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    Home: () => <HomeScreenComponent navigation={navigation} />,
-    Explore: () => <ExploreScreenComponent navigation={navigation} />,
-    Orders: () => <OrdersScreenComponent navigation={navigation} />,
-    Products: () => <ProductsListedScreenComponent navigation={navigation} />,
+    Home: () => <HomeScreenComponent navigation={navigation} setIndex={setIndex}/>,
+    Explore: () => <ExploreScreenComponent navigation={navigation} setIndex={setIndex}/>,
+    Orders: () => <OrdersScreenComponent navigation={navigation} setIndex={setIndex}/>,
+    Products: () => <ProductsListedScreenComponent navigation={navigation} setIndex={setIndex}/>,
   });
 
   return (
