@@ -23,7 +23,7 @@ export default function ProductsListedScreenComponent({
         </View>
         <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
           {listedProductsArray.map((product) => (
-            <View style={{ ...styles.productsDiv }}>
+            <View key={product.id} style={{ ...styles.productsDiv }}>
               <View style={{ ...styles.ImageDiv }}>
                 <Image
                   source={{ uri: product.imageUrl }}

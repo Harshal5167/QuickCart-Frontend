@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { styles } from "./HomeScreen.style";
 import CustomTouchableOpacity from "../../../../Components/Home/CustomTouchableOpacitySearch";
-import categoryArray from "../../../../Constants/Categories";
+import { categoryArrayDefault } from "../../../../Constants/Categories";
 import Colors from "../../../../Constants/Colors";
 
 import HamburgerIcon from "../../../../Components/Home/Header-Assets/Hamburger";
@@ -12,7 +12,7 @@ import NotificationIcon from "../../../../Components/Home/Header-Assets/Notifica
 
 const name = "username";
 
-export default function HomeScreenComponent({ navigation }) {
+export default function HomeScreenComponent({ navigation, setIndex }) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.BACKGROUND_WHITE }}>
       <ScrollView style={{ flex: 1 }}>
@@ -31,12 +31,15 @@ export default function HomeScreenComponent({ navigation }) {
               {"Welcome to QuickCart."}
             </Text>
           </View>
-          <CustomTouchableOpacity text={"Search Product"} />
+          <CustomTouchableOpacity
+            onClick={() => setIndex(1)}
+            text={"Search Product"}
+          />
           <View style={{ ...styles.categoryDiv }}>
             <Text style={{ ...styles.categoryText }}>{"Category"}</Text>
             <ScrollView horizontal={true}>
               <View style={{ ...styles.scrollCategory }}>
-                {categoryArray.map((Category) => (
+                {categoryArrayDefault.map((Category) => (
                   <TouchableOpacity
                     key={Category.id}
                     style={{ ...styles.categoryAndTextComp }}
