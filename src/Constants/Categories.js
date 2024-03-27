@@ -16,15 +16,3 @@ export const categoryArrayDefault = [
   { id: 7, name: "Books", Icon: BooksIcon },
 ];
 
-export const categoryArray1 = [
-  { id: 1, name: "Phones", Icon: PhoneIcon },
-  { id: 2, name: "Furniture", Icon: FurnitureIcon },
-  { id: 3, name: "TV", Icon: TvIcon },
-  { id: 4, name: "Shoes", Icon: ShoeIcon },
-];
-
-export const categoryArray2 = [
-  { id: 1, name: "Gym", Icon: GymIcon },
-  { id: 2, name: "Fashion", Icon: FashionIcon },
-  { id: 3, name: "Books", Icon: BooksIcon },
-];

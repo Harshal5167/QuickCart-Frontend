@@ -30,13 +30,13 @@ export default function ProductsListedScreenComponent({
                   style={{ ...styles.imageStyle }}
                 />
               </View>
-              <View style={{ ...styles.nameCostDeleteDiv }}>
+              <View style={styles.nameCostDeleteDiv}>
                 <View style={{ ...styles.nameCostDiv }}>
                   <Text style={{ ...styles.nameTextStyle }}>
                     {product.name}
                   </Text>
                   <Text style={{ ...styles.costTextStyle }}>
-                    {product.cost}
+                    &#x20b9; {product.cost}
                   </Text>
                 </View>
                 <DeleteBin />

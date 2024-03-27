@@ -25,15 +25,16 @@ export const styles = StyleSheet.create({
     marginBottom:10,
   },
   categoryDiv: {
-    marginTop: 10,
+    marginTop: 12,
     flexDirection: "row",
     justifyContent: "flex-start",
-    marginTop:12,
+    flexWrap:'wrap',
   },
   categoryAndTextComp:{
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 18,
+    marginRight: 17,
+    marginBottom:10,
   },
   categoriesText:{
     fontSize:14,

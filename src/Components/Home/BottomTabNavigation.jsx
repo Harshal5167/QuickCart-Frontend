@@ -9,7 +9,7 @@ import ExploreScreenComponent from "../../Screens/AppHome/AppHomeScreens/Explore
 import OrdersScreenComponent from "../../Screens/AppHome/AppHomeScreens/OrdersScreen/OrdersScreen";
 
 const BottomTabNavigation = ({ navigation }) => {
-  const [index, setIndex] = React.useState(2);
+  const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     {
       key: "Home",

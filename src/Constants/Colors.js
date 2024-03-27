@@ -8,4 +8,5 @@ export default Colors = {
   BLACK: "#000000",
   BACKGROUND_WHITE: "#FAFAFA",
   BACKGROUND_BLACK: "#002233",
+  GOLDEN_YELLOW:"#ffc833"
 };
