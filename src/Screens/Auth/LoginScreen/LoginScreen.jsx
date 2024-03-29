@@ -1,27 +1,45 @@
 import { View, Text, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React from "react";
+import React, { useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useMutation } from "react-query";
 
 import CustomTextInput from "../../../Components/Auth/CustomTextInput";
 import CustomTouchableOpacity from "../../../Components/Auth/CustomTouchableOpacity";
 import { styles } from "./LoginScreen.style";
+import Login from "../../../Services/Auth/Login";
 
 export default function LoginScreenComponent({ navigation }) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState(false);
+  const loginMutation = useMutation(Login);
 
-  const onButtonClick = () => {
+  const onButtonClick = async () => {
     const usernameTrimmed = username.trim();
     const passwordTrimmed = password.trim();
 
-    if (!usernameTrimmed || !passwordTrimmed) {
-      setError(true);
-    } else {
+    try {
+      if (!usernameTrimmed || !passwordTrimmed) {
+        setError(true);
+      } else {
+        const loginData = {
+          username: usernameTrimmed,
+          password: passwordTrimmed,
+        };
+        await loginMutation.mutateAsync(loginData);
+      }
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    if (loginMutation.isSuccess) {
       navigation.navigate("AppHome");
     }
-  };
+    if (loginMutation.isError) {
+      navigation.navigate("RegisterScreen");
+    }
+  }, [loginMutation.isSuccess, loginMutation.isError]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -49,7 +67,15 @@ export default function LoginScreenComponent({ navigation }) {
             secureTextInput={true}
             error={error}
           />
-          <CustomTouchableOpacity text={"Sign In"} onClick={onButtonClick} />
+          {loginMutation.isLoading ? (
+            <CustomTouchableOpacity isLoading={true} />
+          ) : (
+            <CustomTouchableOpacity
+              isLoading={false}
+              text={"Sign In"}
+              onClick={onButtonClick}
+            />
+          )}
           <View style={{ marginTop: 15 }}>
             <Text style={{ ...styles.dontHaveAccount }}>
               Don't have a account?{" "}

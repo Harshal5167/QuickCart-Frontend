@@ -1,15 +1,20 @@
-import url from '../../Constants/Dev'
+import url from "../../Constants/Dev";
+import axios from "axios";
 
 export default async function Login(data) {
   try {
-    const response = await fetch(`${process.env.EXPO_PUBLIC_URL}auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    console.log(response);
-    return response.json();
+    console.log(data);
+    const response = await axios.post(
+      `${process.env.EXPO_PUBLIC_BASE_URL_CUSTOMER}auth/login`,
+      data,
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(response.data);
+    // console.log(response.status);
+    return response;
   } catch (error) {
-    console.log(error);
+    throw error
   }
 }

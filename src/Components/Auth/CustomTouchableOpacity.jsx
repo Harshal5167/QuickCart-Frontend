@@ -3,18 +3,24 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wd,
 } from "react-native-responsive-screen";
+import { ActivityIndicator } from "react-native-paper";
+
 import Colors from "../../Constants/Colors";
-import { Icon } from "react-native-paper";
 
 export default function CustomTouchableOpacity(props) {
-  const { text, onClick } = props;
+  const { text, onClick, isLoading } = props;
 
   return (
     <View style={{ position: "relative", width: "100%" }}>
-      <Icon></Icon>
-      <TouchableOpacity style={style.Button} onPress={onClick}>
-        <Text style={style.text}>{text}</Text>
-      </TouchableOpacity>
+      {isLoading ? (
+        <TouchableOpacity style={style.Button}>
+          <ActivityIndicator size="small" color="#002233" />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={style.Button} onPress={onClick}>
+          <Text style={style.text}>{text}</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
