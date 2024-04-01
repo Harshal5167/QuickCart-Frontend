@@ -1,6 +1,8 @@
 import { View, Text, ScrollView, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from "expo-secure-store";
 
 import Colors from "../../../../Constants/Colors";
 import BackButton from "../../../../Components/Home/Header-Assets/BackButton";
@@ -12,6 +14,17 @@ export default function ProductsListedScreenComponent({
   navigation,
   setIndex,
 }) {
+
+  const [userListedProducts, setuserListedProducts]=useState([]);
+  const [token,setToken]=useState(null)
+
+  useEffect(()=>{
+    (async()=>{
+      const userToken = await SecureStore.getItemAsync("token");
+      setToken(userToken);
+    })();
+  },[]);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.BACKGROUND_WHITE }}>
       <View style={{ ...styles.mainContainer }}>

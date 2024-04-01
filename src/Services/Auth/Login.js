@@ -3,7 +3,6 @@ import axios from "axios";
 
 export default async function Login(data) {
   try {
-    console.log(data);
     const response = await axios.post(
       `${process.env.EXPO_PUBLIC_BASE_URL_CUSTOMER}auth/login`,
       data,
@@ -11,10 +10,10 @@ export default async function Login(data) {
         headers: { "Content-Type": "application/json" },
       }
     );
-    console.log(response.data);
-    // console.log(response.status);
     return response;
   } catch (error) {
-    throw error
+    if (error.response.status == 401 || error.response.status == 500)
+      throw new Error(JSON.stringify(error.response.data));
+    else throw error;
   }
 }

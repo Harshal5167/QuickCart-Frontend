@@ -1,6 +1,7 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as SecureStore from "expo-secure-store";
 
 import { styles } from "./HomeScreen.style";
 import CustomTouchableOpacity from "../../../../Components/Home/CustomTouchableOpacitySearch";
@@ -11,9 +12,19 @@ import listedProductsArray from "../../../../Constants/ListedProducts";
 import HamburgerIcon from "../../../../Components/Home/Header-Assets/Hamburger";
 import NotificationIcon from "../../../../Components/Home/Header-Assets/Notification";
 
-const name = "username";
 
 export default function HomeScreenComponent({ navigation, setIndex }) {
+  const [username,setUsername]=useState(null)
+  const [token,setToken]=useState(null)
+
+  useEffect(() => {
+    (async () => {
+      const userToken = await SecureStore.getItemAsync("token");
+      setToken(userToken);
+      const name = await SecureStore.getItemAsync("username");
+      setUsername(name);
+    })();
+  }, []);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.BACKGROUND_WHITE }}>
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicato={false}>
@@ -27,7 +38,7 @@ export default function HomeScreenComponent({ navigation, setIndex }) {
             />
           </View>
           <View style={{ ...styles.welcomeTextContainer }}>
-            <Text style={{ ...styles.helloText }}>{`Hello ${name}`}</Text>
+            <Text style={{ ...styles.helloText }}>{`Hello ${username}`}</Text>
             <Text style={{ ...styles.welcomeText }}>
               {"Welcome to QuickCart."}
             </Text>
@@ -63,7 +74,10 @@ export default function HomeScreenComponent({ navigation, setIndex }) {
             <Text style={{ ...styles.categoryText }}>{"New Arrival"}</Text>
             <View style={styles.productsArrayDiv}>
               {listedProductsArray.map((product) => (
-                <TouchableOpacity key={product.id} style={styles.productDiv}>
+                <TouchableOpacity
+                  key={product.id}
+                  style={styles.productDiv}
+                >
                   <View style={styles.imageDiv}>
                     <Image
                       source={{ uri: product.imageUrl }}

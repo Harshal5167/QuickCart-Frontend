@@ -1,8 +1,9 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useMutation } from "react-query";
+import * as SecureStore from "expo-secure-store";
 
 import CustomTextInput from "../../../Components/Auth/CustomTextInput";
 import CustomTouchableOpacity from "../../../Components/Auth/CustomTouchableOpacity";
@@ -34,12 +35,38 @@ export default function LoginScreenComponent({ navigation }) {
 
   useEffect(() => {
     if (loginMutation.isSuccess) {
-      navigation.navigate("AppHome");
+      (async () => {
+        const response = loginMutation.data;
+        await SecureStore.setItemAsync("token", response.data.token);
+        await SecureStore.setItemAsync(
+          "username",
+          response.data.customer.username
+        );
+        await 
+        navigation.navigate("AppHome");
+      })();
     }
     if (loginMutation.isError) {
-      navigation.navigate("RegisterScreen");
+      const error = JSON.parse(loginMutation.error.message);
+      Alert.alert(error.status, error.msg, [
+        {
+          text: "OK",
+          onPress: () => {
+            if (error.renderTo) {
+              navigation.navigate(error.renderTo);
+            }
+          },
+        },
+      ]);
     }
   }, [loginMutation.isSuccess, loginMutation.isError]);
+
+  useEffect(() => {
+    (async () => {
+      const token = SecureStore.getItemAsync("token");
+      if (token) navigation.navigate("AppHome");
+    })();
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
