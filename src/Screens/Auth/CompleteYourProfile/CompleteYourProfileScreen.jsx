@@ -36,7 +36,7 @@ export default function CompleteYourProfileScreenComponent({ navigation }) {
     ) {
       setError(true);
     } else {
-      navigation.navigate("HomeScreen");
+      navigation.navigate("AppHome");
     }
   };
 
