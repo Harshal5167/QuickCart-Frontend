@@ -1,17 +1,13 @@
 import { View, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wd,
-} from "react-native-responsive-screen";
 import Colors from "../../Constants/Colors";
 
 export default function CustomTextInput(props) {
-  const { label, keyboardType, secureTextInput, onChangeText, value, error } =
+  const { label, keyboardType, secureTextInput, onChangeText, value, error, width } =
     props;
 
   return (
-    <View style={{ position: "relative", width: "auto" }}>
+    <View style={{ position: "relative", width:width}}>
       <TextInput
         label={label}
         style={style.TextInput}

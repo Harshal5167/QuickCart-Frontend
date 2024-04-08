@@ -38,7 +38,7 @@ const style = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: Colors.BLACK,
+    color: Colors.BACKGROUND_BLACK,
   },
   IconDiv: {
     backgroundColor: Colors.PRIMARY,

@@ -48,15 +48,19 @@ export const styles = StyleSheet.create({
     justifyContent:'space-between',
   },
   profileIconBox: {
+    width:100,
+    height:100,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 5,
     borderRadius:100,
   },
   profileIcon: {
+    width:100,
+    height:100,
+    resizeMode:'cover',
+    flex:1,
     borderRadius:100,
-    // borderWidth: 1,
-    borderColor: Colors.TEXT_BOX_BORDER_COLOR,
   },
   selectListBoxStyle: {
     marginTop: 3,

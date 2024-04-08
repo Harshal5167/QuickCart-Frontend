@@ -13,7 +13,7 @@ import HamburgerIcon from "../../../../Components/Home/Header-Assets/Hamburger";
 import NotificationIcon from "../../../../Components/Home/Header-Assets/Notification";
 
 
-export default function HomeScreenComponent({ navigation, setIndex }) {
+export default function HomeScreenComponent(props) {
   const [username,setUsername]=useState(null)
   const [token,setToken]=useState(null)
 
@@ -25,6 +25,7 @@ export default function HomeScreenComponent({ navigation, setIndex }) {
       setUsername(name);
     })();
   }, []);
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.BACKGROUND_WHITE }}>
       <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicato={false}>
@@ -33,7 +34,7 @@ export default function HomeScreenComponent({ navigation, setIndex }) {
             <HamburgerIcon />
             <NotificationIcon
               onPress={() => {
-                navigation.navigate("NotificationScreen");
+                props.navigation.navigate("NotificationScreen");
               }}
             />
           </View>
@@ -44,7 +45,7 @@ export default function HomeScreenComponent({ navigation, setIndex }) {
             </Text>
           </View>
           <CustomTouchableOpacity
-            onClick={() => setIndex(1)}
+            onClick={() => props.navigation.navigate("OrderScreen")}
             text={"Search Product"}
           />
           <View style={{ ...styles.categoryDiv }}>

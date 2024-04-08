@@ -43,7 +43,7 @@ export default function LoginScreenComponent({ navigation }) {
           response.data.customer.username
         );
         await 
-        navigation.navigate("AppHome");
+        navigation.replace("AppHome");
       })();
     }
     if (loginMutation.isError) {
@@ -53,7 +53,7 @@ export default function LoginScreenComponent({ navigation }) {
           text: "OK",
           onPress: () => {
             if (error.renderTo) {
-              navigation.navigate(error.renderTo);
+              navigation.replace(error.renderTo);
             }
           },
         },
@@ -61,12 +61,12 @@ export default function LoginScreenComponent({ navigation }) {
     }
   }, [loginMutation.isSuccess, loginMutation.isError]);
 
-  useEffect(() => {
-    (async () => {
-      const token = SecureStore.getItemAsync("token");
-      if (token) navigation.navigate("AppHome");
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const token = SecureStore.getItemAsync("token");
+  //     if (token) navigation.navigate("AppHome");
+  //   })();
+  // }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

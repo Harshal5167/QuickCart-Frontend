@@ -32,7 +32,7 @@ export default function RegisterScreenComponent({ navigation }) {
     ) {
       setError(true);
     } else {
-      navigation.navigate("CompleteYourProfileScreen");
+      navigation.replace("CompleteYourProfileScreen");
     }
   };
 
@@ -82,7 +82,7 @@ export default function RegisterScreenComponent({ navigation }) {
               already have an account?{" "}
               <Text
                 style={{ ...styles.signIn }}
-                onPress={() => navigation.navigate("LoginScreen")}
+                onPress={() => navigation.replace("LoginScreen")}
               >
                 Sign In
               </Text>

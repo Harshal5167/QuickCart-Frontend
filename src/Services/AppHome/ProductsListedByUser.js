@@ -7,7 +7,7 @@ export default async function getProductsListed(token) {
       {
         headers: {
           "Content-Type": "application/json",
-          "authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
